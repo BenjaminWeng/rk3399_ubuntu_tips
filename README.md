@@ -16,6 +16,7 @@ git clone https://TeeFirefly@gitlab.com/TeeFirefly/prebuilts.git
 http://dev.t-firefly.com/thread-12739-1-1.html  
 build:  
         sudo make ARCH=arm64 firefly_linux_defconfig  
+        sudo make ARCH=arm64 rockchip_linux_defconfig    
         sudo make ARCH=arm64 rk3399-firefly-linux.img -j8  
         编译后在内核源码的目录下生成kernel.img和resource.img文件。  
 
