@@ -31,4 +31,24 @@ sudo dpkg -i rkflashkit_0.1.4_all.deb
 图形界面：  
 sudo rkflashkit  
 
-6. enter rkusb(not maskrom) and using rkflashkit to replace kernel.img and resource.img
+6. enter rkusb(not maskrom) and using rkflashkit to replace kernel.img and resource.img  
+
+7. modify firefly kernel:  
+git clone https://github.com/FireflyTeam/kernel
+using branch : firefly ; and checkout to the commit at least after 986a277676d350d020866ab9295a40003afb0fd3  
+commit 986a277676d350d020866ab9295a40003afb0fd3  
+Author: hzq <service@t-firefly.com>  
+Date:   Fri Sep 7 15:36:32 2018 +0800  
+    arm64: dts: support camera ov13850  
+
+8. modify files with git diff below:  
+https://github.com/FireflyTeam/kernel/commit/986a277676d350d020866ab9295a40003afb0fd3  
+add modifications to rk3399-firefly-linux.dts  
+http://dev.t-firefly.com/thread-14127-1-1.html  
+modify Kconfig of cameras and cif_10  
+drivers/media/i2c/soc_camera/rockchip/Kconfig : turn ov13850/4689 on.  
+drivers/media/platform/rk-isp10/Kconfig : turn rk-isp10 on.  
+
+9. replace kernel/resource.img with rkflashtool and then test with command below:  
+gst-launch-1.0 v4l2src ! video/x-raw,format=NV12,width=640,height=480 ! videoconvert ! autovideosink  
+and the image should be shown on the screen!  
