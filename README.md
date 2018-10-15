@@ -57,3 +57,12 @@ and the image should be shown on the screen!
 cmake -D CMAKE_INSTALL_PREFIX=/usr/local -D CMAKE_BUILD_TYPE=Release -D WITH_LIBV4L=ON -D WITH_V4L=ON ..  
 VideoCapture capture("v4l2src ! video/x-raw,format=NV12,width=640,height=480 ! videoconvert ! autovideosink", CAP_ANY);  
 
+11. mjpg streamer:  
+http://www.linuxdiyf.com/linux/13261.html  
+https://ariandy1.wordpress.com/2013/04/07/streaming-opencv-output-through-httpnetwork-with-mjpeg/  
+https://github.com/ariandyy/bgsubtract  
+under the mjpg-streamer-experimental folder, executing.......  
+export LD_LIBRARY_PATH=.  
+./mjpg_streamer -i "input_file.so -f /home/firefly/Documents/Projects/cv_face_detect/output" -o "output_http.so -w ./www"  
+then, we can find streaming image at http://127.0.0.1:8080/stream.html  
+or using ifconfig to get the real http addr.
