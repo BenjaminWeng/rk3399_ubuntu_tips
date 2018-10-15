@@ -52,3 +52,8 @@ drivers/media/platform/rk-isp10/Kconfig : turn rk-isp10 on.
 9. replace kernel/resource.img with rkflashtool and then test with command below:  
 gst-launch-1.0 v4l2src ! video/x-raw,format=NV12,width=640,height=480 ! videoconvert ! autovideosink  
 and the image should be shown on the screen!  
+
+10. build opencv    and       read image from gstreamer with VideoCapture :  
+cmake -D CMAKE_INSTALL_PREFIX=/usr/local -D CMAKE_BUILD_TYPE=Release -D WITH_LIBV4L=ON -D WITH_V4L=ON ..  
+VideoCapture capture("v4l2src ! video/x-raw,format=NV12,width=640,height=480 ! videoconvert ! autovideosink", CAP_ANY);  
+
